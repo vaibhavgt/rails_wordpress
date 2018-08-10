@@ -11,7 +11,7 @@ module Wordpress
     def self.find_or_create category_name, parent = nil
       raise "category name can't be blank" if category_name.blank?
       parent_id = parent.try(:id).to_i
-      category = joins(:term).where(wp_terms: {name: category_name}, parent: parent_id).first
+      category = joins(:term).where(wpm4_terms: {name: category_name}, parent: parent_id).first
       category ||= create!(description: category_name, term_id: Term.create!(name: category_name).id, parent: parent_id)
     end
   end
